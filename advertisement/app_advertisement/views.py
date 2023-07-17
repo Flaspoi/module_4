@@ -9,16 +9,16 @@ def top_sellers(request):
     return render(request, "top-sellers.html")
 
 def advertisement_post(request):
-    return render(request, "advertisement-post")
+    return render(request, "advertisement-post.html")
 
 def register(request):
-    return render(request, "register")
+    return render(request, "register.html")
 
 def login(request):
-    return render(request, "login")
+    return render(request, "login.html")
 
 def profile(request):
-    return render(request, "profile")
+    return render(request, "profile.html")
 
 def exit(request):
-    return render(request, "exit")
+    return render(request, "exit.html")
