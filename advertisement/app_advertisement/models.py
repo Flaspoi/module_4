@@ -37,7 +37,10 @@ class Advertisement(models.Model):
         verbose_name="Пользователь",
         on_delete=models.CASCADE
     )
-    image = models.ImageField('Изображение', upload_to='advertisements/')
+    image = models.ImageField(
+        verbose_name='Изображение',
+        upload_to='advertisements/'
+        )
     
     def __str__(self):
         return f"id = {self.id} title = {self.title} price = {self.price}"
@@ -64,6 +67,13 @@ class Advertisement(models.Model):
                 '<span style="color: red; font-weight: bold;">Сегодня в {}</span>', updated_time
             )
         return self.updated_at.strftime('%d.%m.%Y в %H:%M:%S')
+    
+    @admin.display(description='Изображение')
+    def mini_image(self):
+        if self.image:
+            return format_html('<img src={} style="width: 50px; height: 50px;" />', self.image.url)
+        else:
+            return format_html('<span>Изображения нету</span>')
         
 
     
