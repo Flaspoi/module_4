@@ -2,6 +2,7 @@ from django.shortcuts import render, reverse, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.contrib.auth.forms import UserCreationForm
 
 
 @login_required(login_url=reverse_lazy('login'))
@@ -30,3 +31,14 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect(reverse('login'))
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save
+            
+    
+    else:
+        form = UserCreationForm
+        return render(request, 'app_auth/register.html', {'form': form} )

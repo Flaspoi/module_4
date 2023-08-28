@@ -19,6 +19,8 @@ class AdvertisementForm(ModelForm):
         if title.startswith("?"):
             raise ValidationError("Заголовок начинается с ?")
         return title
+    
+    
 
 
 # class AdvertisementForm(forms.Form):

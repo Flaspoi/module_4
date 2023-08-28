@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Логин
+Регистрация
 {% endblock %}
 
 {% block content %}
@@ -19,12 +19,12 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="advertisement-post.html">
+      <a class="nav-link" href="{% url 'adv-post' %}">
         <span style="font-weight: bold;">Разместить объявление</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="register.html">
+      <a class="nav-link active" aria-current="page" href="{% url 'signup' %}">
         <span style="font-weight: bold;">Регистрация</span>
       </a>
     </li>
@@ -34,7 +34,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="profile.html">
+      <a class="nav-link" href="{% url 'profile'%}">
         <span style="font-weight: bold;">Профиль</span>
       </a>
     </li>
@@ -53,9 +53,10 @@
     </div>
   </div>
     <form method="post">
+      {% csrf_token %}
       <div class="row mb-3">
         <div class="col">
-          <label class="col-sm-4 col-form-label offset-4">Username</label>
+          <label class="col-sm-4 col-form-label offset-4">Имя пользователя</label>
           <div class="col-sm-4 offset-4 w-25">
             <input type="text" class="form-control form-control-lg">
           </div>
@@ -63,7 +64,7 @@
       </div>
       <div class="row mb-3">
         <div class="col">
-          <label class="col-sm-4 col-form-label offset-4">Name</label>
+          <label class="col-sm-4 col-form-label offset-4">Имя</label>
           <div class="col-sm-4 offset-4 w-25">
             <input type="text" class="form-control form-control-lg">
           </div>
@@ -71,7 +72,7 @@
       </div>
       <div class="row mb-3">
         <div class="col">
-          <label class="col-sm-4 col-form-label offset-4">Surname</label>
+          <label class="col-sm-4 col-form-label offset-4">Фамилия</label>
           <div class="col-sm-4 offset-4 w-25">
             <input type="text" class="form-control form-control-lg">
           </div>
@@ -79,7 +80,7 @@
       </div>
       <div class="row mb-3">
         <div class="col">
-          <label class="col-sm-4 col-form-label offset-4">Password</label>
+          <label class="col-sm-4 col-form-label offset-4">Пароль</label>
           <div class="col-sm-4 offset-4 w-25">
             <input type="password" class="form-control form-control-lg">
           </div>
@@ -87,7 +88,7 @@
       </div>
       <div class="row mb-3">
         <div class="col">
-          <label class="col-sm-4 col-form-label offset-4">Password confirmation</label>
+          <label class="col-sm-4 col-form-label offset-4">Потдвердить пароль</label>
           <div class="col-sm-4 offset-4 w-25">
             <input type="password" class="form-control form-control-lg">
             <div class="form-label bg-warning" style="margin: 10px 0px;">Ошибка (если будет)</div>
