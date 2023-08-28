@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # our app
     'app_advertisement',
     'app_lesson_4',
+    'app_auth',
     
 ]
 

@@ -1,9 +1,12 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Главная {% endblock%}
+{% block title %}
+Главная
+{% endblock %}
 
-{% block content%}
+{% block content %}
+
 <ul class="nav nav-pills sticky-top bg-white nav-fill">
   <li class="nav-item">
     <a class="nav-link active" aria-current="page" href="{% url 'main-page' %}">
@@ -15,12 +18,12 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'advertisement-post' %}">
+    <a class="nav-link" href="{% url 'adv-post' %}">
       <span style="font-weight: bold;">Разместить объявление</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'register' %}">
+    <a class="nav-link" href="">
       <span style="font-weight: bold;">Регистрация</span>
     </a>
   </li>
@@ -30,12 +33,12 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'profile'%}">
+    <a class="nav-link" href="{% url 'profile' %}">
       <span style="font-weight: bold;">Профиль</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'exit'%}">
+    <a class="nav-link" href="{% url 'logout' %}">
       <span style="font-weight: bold;">Выйти</span>
     </a>
   </li>
@@ -47,7 +50,7 @@
       <img src="{% static 'img/adv.png' %}" class="mx-auto d-block w-33" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="{% static 'img/adv.png' %}" class="mx-auto d-block w-33" alt="...">
+      <img src="{% static 'img/adv.png' %}"class="mx-auto d-block w-33" alt="...">
     </div>
     <div class="carousel-item">
       <img src="{% static 'img/adv.png' %}" class="mx-auto d-block w-33" alt="...">
@@ -62,6 +65,7 @@
     <span class="visually-hidden">Следующий</span>
   </button>
 </div>
+
 <div class="container" style="margin: 50px;">
   <div class="display-2">
     <span class="badge bg-primary">В центре внимания</span>
@@ -120,6 +124,7 @@
     </div>
   </div>
   {% endfor %}
+</div>
 <footer style="padding: 100px;" class="bg-primary">
   <nav class="navbar navbar-expand-sm navbar-dark">
     <a class="navbar-brand" href="#">Добавьте</a>

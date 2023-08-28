@@ -1,39 +1,32 @@
 from django.shortcuts import render, redirect, reverse
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+
 from .models import Advertisement
 from .forms import AdvertisementForm
 
 
 def index(request):
     advertisements = Advertisement.objects.all()
-    context = {'advertisements': advertisements}
-    return render(request, "index.html")
+    context = {"advertisements": advertisements}
+    return render(request, "app_advertisements/index.html", context=context)
+
 
 def top_sellers(request):
-    return render(request, "top-sellers.html")
+    return render(request, "app_advertisements/top-sellers.html")
 
+
+@login_required(login_url=reverse_lazy('login'))
 def advertisement_post(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = AdvertisementForm(request.POST, request.FILES)
         if form.is_valid():
-            advertisement = Advertisement(**form.cleaned_data)
+            advertisement = form.save(commit=False)
+            # advertisement = Advertisement(**form.cleaned_data)
             advertisement.user = request.user
             advertisement.save()
             url = reverse('main-page')
             return redirect(url)
-    form = AdvertisementForm
+    form = AdvertisementForm()
     context = {"form": form}
-    return render(request, "advertisement-post.html", context)
-
-def register(request):
-    return render(request, "register.html")
-
-def login(request):
-    return render(request, "login.html")
-
-def profile(request):
-    return render(request, "profile.html")
-
-def exit(request):
-    return render(request, "exit.html")
-
+    return render(request, "app_advertisements/advertisement-post.html", context)
