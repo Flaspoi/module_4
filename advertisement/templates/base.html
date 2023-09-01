@@ -9,15 +9,57 @@
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
   <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/fontello.css' %}">
-  <title>{% block title%}Index{% endblock%}</title>
+  <title>{% block title %}Index{% endblock %}</title>
 </head>
 
 <body>
+
+
+  <ul class="nav nav-pills sticky-top bg-white nav-fill">
+    <li class="nav-item">
+      <a class="nav-link {% block active_1 %}{% endblock %}" href="{% url 'main-page' %}">
+        <span style="font-weight: bold;">Главная</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {% block active_2 %}{% endblock %}" href="{% url 'top-sellers' %}"><span style="font-weight: bold;">Топ продавцов</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {% block active_3 %}{% endblock %}" href="{% url 'adv-post' %}">
+        <span style="font-weight: bold;">Разместить объявление</span>
+      </a>
+    </li>
+    {% if not user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link {% block active_4 %}{% endblock %}" aria-current="page" href="{% url 'register' %}">
+        <span style="font-weight: bold;">Регистрация</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {% block active_5 %}{% endblock %}" href="{% url 'login' %}">
+        <span style="font-weight: bold;">Войти</span>
+      </a>
+    </li>
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link {% block active_6 %}{% endblock %}" href="{% url 'profile' %}">
+        <span style="font-weight: bold;">Профиль</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'logout' %}">
+        <span style="font-weight: bold;">Выйти</span>
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+
 {% block content %}
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 {% endblock %}
 
 </body>

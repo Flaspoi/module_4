@@ -1,49 +1,15 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Объявления {% endblock%}
+{% block title %}
+Объявление
+{% endblock %}
 
-{% block content%}
-  <ul class="nav nav-pills sticky-top bg-white nav-fill">
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'main-page' %}">
-        <span style="font-weight: bold;">Главная</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'top-sellers' %}"><span style="font-weight: bold;">Топ продавцов</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'advertisement-post' %}">
-        <span style="font-weight: bold;">Разместить объявление</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'signup' %}">
-        <span style="font-weight: bold;">Регистрация</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'login' %}">
-        <span style="font-weight: bold;">Войти</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'profile'%}">
-        <span style="font-weight: bold;">Профиль</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'logout' %}">
-        <span style="font-weight: bold;">Выйти</span>
-      </a>
-    </li>
-  </ul>
+{% block content %}
 
   <div class="container" style="margin: 50px;">
     <div class="display-2">
-      <span class="badge bg-primary">Объявление пользователя "username"</span>
+      <span class="badge bg-primary">Объявление пользователя {{ advertisement.user }}</span>
     </div>
   </div>
   <div class="col offset-2">
@@ -51,27 +17,19 @@
       <div class="row g-0">
         <div class="col-md-4">
           <a href="#" class="nav-link">
-            <img src="img/adv.png" class="img-fluid rounded-start" alt="Card title">
+            <img src="{% if advertisement.image %} {{ advertisement.image.url }} {% else %} {% static 'img/adv.png' %} {% endif %}" class="img-fluid rounded-start" alt="Card title">
           </a>
         </div>
         <div class="col">
           <div class="card-body">
             <h5 class="card-title">
-              <a href="#" class="nav-link"><strong>Продам гараж</strong></a>
+              <a href="#" class="nav-link"><strong>Продам {{ advertisement.title }}</strong></a>
             </h5>
             <p class="card-text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit eum aut commodi dolores
-              praesentium fugiat! Maxime perspiciatis iste, voluptas tenetur voluptatem at beatae, aliquid
-              libero odit ab accusamus tempore assumenda.
-              Hic asperiores pariatur recusandae sapiente doloremque illo laudantium placeat sed fugit!
-              Dolorem nulla quaerat doloremque odit impedit unde esse dolorum tenetur quos error! Iure
-              quas, illo expedita sed suscipit ullam.
-              Illo quam odio, quas laborum natus error doloremque totam maiores dolorum fugit aliquam, sit
-              numquam impedit praesentium facilis amet perspiciatis facere rem magnam consectetur, nobis
-              est. Qui quod fuga illum.
+              {{ advertisement.description }}
             </p>
-            <span>Автор: "username"</span>
-            <p class="card-text"><small class="text-muted">Размещено: "дата"</small></p>
+            <span>Автор: {{ advertisement.user }}</span>
+            <p class="card-text"><small class="text-muted">Размещено: {{ advertisement.created_at }}</small></p>
           </div>
         </div>
       </div>
@@ -108,9 +66,4 @@
       </div>
     </nav>
   </footer>
-{% block scripts %}
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 {% endblock %}
-{% endblock %}
-
-</html>

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib import admin
 from django.utils.html import format_html
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 User = get_user_model()
 
@@ -74,6 +75,9 @@ class Advertisement(models.Model):
             return format_html('<img src={} style="width: 50px; height: 50px;" />', self.image.url)
         else:
             return format_html('<span>Изображения нету</span>')
-        
+
+
+    def get_absolute_url(self):
+        return reverse('adv', kwargs={"pk": self.pk}) 
 
     
